@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Ricerca Cibi e Calorie</title>
+  <meta name="description" content="Ricerca Cibi e Calorie">
+  <meta name="author" content="Michelangelo Giacomelli">
+
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/starter-template.css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="./libs/jquery-1.12.4.min.js"></script>
+  <script src="./libs/bootstrap.min.js"></script>
+  <script src="./libs/bootbox.min.js"></script>
+  <script src="./libs/lunr.min.js"></script>
+  <script src="./js/calorie.js"></script>
+  <script src="./js/main.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Cibi e Calorie</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a id="about" href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template" style="padding-bottom:0;">
+        <p class="lead">Cibi e calorie.</p>
+      </div>
+
+    </div>
+
+    <div class="container">
+        <div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="field">Ricerca libera:</label>
+                    <input type="field" class="form-control" id="field">
+                    <label for="quant">quantit&agrave;: (in grammi)</label>
+                    <input type="quant" class="form-control" id="quant" value="100">
+                </div>
+                <button type="submit" id="cerca" class="btn btn-default">Cerca...</button>
+            </form>
+        </div>
+        <div id="results" style="display:none;">
+            <br/>
+            <div id="testo">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-striped">
+                    <thead>
+                      <tr>
+                        <th>Alimento</th>
+                        <th id="kal_title">KCAL Gr</th>
+                        <th>KCAL 100Gr</th>
+                        <th>KJ 100Gr</th>
+                        <th>Proteine Totali</th>
+                        <th>Proteine Animali</th>
+                        <th>Proteine Vegetali</th>
+                        <th>Vitamina B1</th>
+                        <th>Vitamina B2</th>
+                        <th>Vitamina B3</th>
+                        <th>Vitamina C</th>
+                        <th>Vitamina B6</th>
+                      </tr>
+                    </thead>
+                    <tbody id="res_body">
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
