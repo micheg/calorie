@@ -7,7 +7,7 @@
   <title>Ricerca Cibi e Calorie</title>
   <meta name="description" content="Ricerca Cibi e Calorie">
   <meta name="author" content="Michelangelo Giacomelli">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/starter-template.css">
 
@@ -19,8 +19,9 @@
   <script src="./libs/bootstrap.min.js"></script>
   <script src="./libs/bootbox.min.js"></script>
   <script src="./libs/lunr.min.js"></script>
-  <script src="./js/calorie.js"></script>
-  <script src="./js/main.js"></script>
+  <script src="./libs/isMobile.min.js"></script>
+  <script src="./data/calorie.js"></script>
+  <script src="./js/main.js?version=1"></script>
 </head>
 
 <body>
@@ -48,14 +49,14 @@
     <div class="container">
 
       <div class="starter-template" style="padding-bottom:0;">
-        <p class="lead">Cibi e calorie.</p>
+        <!--<p class="lead">Cibi e calorie.</p>-->
       </div>
 
     </div>
 
     <div class="container">
-        <div>
-            <form role="form">
+        <div id="search_form">
+            <form role="form" onsubmit="field.blur();">
                 <div class="form-group">
                     <label for="field">Ricerca libera:</label>
                     <input type="field" class="form-control" id="field">
@@ -70,7 +71,7 @@
             <div id="testo">
             </div>
             <div class="table-responsive">
-                <table class="table table-hover table-condensed table-striped">
+                <table id="res_set" class="table table-hover table-condensed table-striped">
                     <thead>
                       <tr>
                         <th>Alimento</th>
@@ -80,11 +81,6 @@
                         <th>Proteine Totali</th>
                         <th>Proteine Animali</th>
                         <th>Proteine Vegetali</th>
-                        <th>Vitamina B1</th>
-                        <th>Vitamina B2</th>
-                        <th>Vitamina B3</th>
-                        <th>Vitamina C</th>
-                        <th>Vitamina B6</th>
                       </tr>
                     </thead>
                     <tbody id="res_body">

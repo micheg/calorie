@@ -5,3 +5,20 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+
+#res_set tr {
+    cursor: pointer;
+}
+
+#res_body {
+    height: 100%;
+    overflow: scroll;
+}
+
+#cerca {
+    width: 100%;
+}
+
+body.is_mobile .nomobile {
+    display: none;
+}
