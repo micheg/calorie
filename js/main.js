@@ -5,7 +5,7 @@
     {
         var index = lunr(function ()
         {
-            this.field('ALIMENTO', {boost: 10});
+            this.field('A', {boost: 10});
             this.ref('id');
         });
         var i=0;l=cals.length;
@@ -13,7 +13,7 @@
         {
             index.add({
                 id: i,
-                ALIMENTO: cals[i]['ALIMENTO']
+                A: cals[i]['A']
             });
         }
         search = index;
@@ -52,7 +52,7 @@
                 template += '<caption>Energia e Proteine</caption>';
                 template += '  <thead>';
                 template += '    <tr>';
-                template += '      <th>KCAL</th>';
+                template += '      <th>KC</th>';
                 template += '      <th>KJ</th>';
                 template += '      <th>Tot.</th>';
                 template += '      <th>Anim.</th>';
@@ -61,11 +61,11 @@
                 template += '  </thead>';
                 template += '  <tbody>';
                 template += '    <tr>';
-                template += '        <td>$KCAL</td>';
+                template += '        <td>$KC</td>';
                 template += '        <td>$KJ</td>';
-                template += '        <td>$PROT_TOT</td>';
-                template += '        <td>$PROT_ANI</td>';
-                template += '        <td>$PROT_VEG</td>';
+                template += '        <td>$PT</td>';
+                template += '        <td>$PA</td>';
+                template += '        <td>$PV</td>';
                 template += '    </tr>';
                 template += '  </tbody>';
                 template += '</table>';
@@ -107,19 +107,19 @@
                 template += '  </thead>';
                 template += '  <tbody>';
                 template += '    <tr>';
-                template += '        <td>$GLUCIDI_TOT</td>';
-                template += '        <td>$AMIDO</td>';
-                template += '        <td>$GLUCIDI_SOL</td>';
-                template += '        <td>$LIPIDI_TOT</td>';
-                template += '        <td>$SATURI_TOT</td>';
+                template += '        <td>$GT</td>';
+                template += '        <td>$AM</td>';
+                template += '        <td>$GL</td>';
+                template += '        <td>$LT</td>';
+                template += '        <td>$ST</td>';
                 template += '    </tr>';
                 template += '  </tbody>';
                 template += '</table>';
                 template += '</p>';
 
-            var subs = ["KCAL","KJ","PROT_TOT","PROT_ANI",
-                "PROT_VEG","B1","B2","B3","C","B6","GLUCIDI_TOT",
-                "AMIDO","GLUCIDI_SOL","LIPIDI_TOT", "SATURI_TOT"];
+            var subs = ["KC","KJ","PT","PA",
+                "PV","B1","B2","B3","C","B6","GT",
+                "AM","GL","LT", "ST"];
 
             var ID = $(this).attr('ref-id');
             var JSON_DATA = cals[ID];
@@ -135,7 +135,7 @@
             bootbox.dialog({
               size: 'large',
               message: tmp,
-              title: JSON_DATA['ALIMENTO'] + ' (per 100Gr)',
+              title: JSON_DATA['A'] + ' (per 100Gr)',
               buttons:
               {
                 main:
@@ -180,18 +180,18 @@
                 grammi = 100;
             }
             $('#quant').val(grammi);
-            $('#kal_title').html('KCAL ' +  grammi + 'Gr');
+            $('#kal_title').html('KC ' +  grammi + 'Gr');
             console.log("term is => " + term);
             results = search.search(term);
-            //var template = "<tr><td>$ALIMENTO</td><td>$KCALX</td><td>$KCAL</td><td>$KJ</td><td>$PROT_TOT</td><td>$PROT_ANI</td><td>$PROT_VEG</td><td>$B1</td><td>$B2</td><td>$B3</td><td>$C</td><td>$B6</td></tr>";
-            var template = "<tr ref-id='$ID'><td>$ALIMENTO</td><td>$KCALX</td><td>$KCAL</td><td>$KJ</td><td>$PROT_TOT</td><td>$PROT_ANI</td><td>$PROT_VEG</td></tr>";
+            //var template = "<tr><td>$A</td><td>$KCX</td><td>$KC</td><td>$KJ</td><td>$PT</td><td>$PA</td><td>$PV</td><td>$B1</td><td>$B2</td><td>$B3</td><td>$C</td><td>$B6</td></tr>";
+            var template = "<tr ref-id='$ID'><td>$A</td><td>$KCX</td><td>$KC</td><td>$KJ</td><td>$PT</td><td>$PA</td><td>$PV</td></tr>";
             if ( results.length > 1 )
             {
                 $('#testo').html(results.length.toString() + ' risultati trovati:');
                 var l = results.length; i = 0;
                 //var tmp = '';
                 var cur = null;
-                var subs = ["ALIMENTO","KCALX","KCAL","KJ","PROT_TOT","PROT_ANI","PROT_VEG","B1","B2","B3","C","B6"];
+                var subs = ["A","KCX","KC","KJ","PT","PA","PV","B1","B2","B3","C","B6"];
                 //tmp = template;
                 for(;i<l;i++)
                 {
@@ -201,13 +201,13 @@
                     var tmp = template;
                     for(var x=0; x<subs.length; x++)
                     {
-                        if(subs[x] != 'KCALX')
+                        if(subs[x] != 'KCX')
                         {
                             tmp = tmp.replace('$' + subs[x], cur[subs[x]]);
                         }
                         else
                         {
-                            tmp = tmp.replace('$' + subs[x], ((cur['KCAL']/100) * grammi).toFixed(2).toString());
+                            tmp = tmp.replace('$' + subs[x], ((cur['KC']/100) * grammi).toFixed(2).toString());
                         }
                     }
                     tmp = tmp.replace('$ID', id);
