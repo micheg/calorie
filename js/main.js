@@ -26,6 +26,7 @@
             if ( event.charCode == 13 && window.is_mobile )
             {
                 event.preventDefault();
+                event.stopPropagation();
                 $('#field').blur();
                 $('#cerca').trigger('click');
             }
@@ -36,6 +37,7 @@
             if ( event.charCode == 13 && window.is_mobile )
             {
                 event.preventDefault();
+                event.stopPropagation();
                 $('#quant').blur();
                 $('#cerca').trigger('click');
             }
