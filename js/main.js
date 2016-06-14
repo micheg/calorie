@@ -21,6 +21,27 @@
 
     function setup_ui ()
     {
+        $('#field').on('keypress', function (event)
+        {
+            if ( event.charCode == 13 && window.is_mobile )
+            {
+                event.preventDefault();
+                $('#field').blur();
+                $('#cerca').trigger('click');
+            }
+        });
+
+        $('#quant').on('keypress', function (event)
+        {
+            if ( event.charCode == 13 && window.is_mobile )
+            {
+                event.preventDefault();
+                $('#quant').blur();
+                $('#cerca').trigger('click');
+            }
+        });
+
+
         $(document).on('click', '#results table tr', function (evt)
         {
             evt.stopPropagation();
@@ -207,6 +228,7 @@
         if (isMobile.apple.phone || isMobile.android.phone || isMobile.seven_inch)
         {
             $("body").addClass('is_mobile');
+            window.is_mobile = true;
         }
         console.log('entry point');
         create_db();
